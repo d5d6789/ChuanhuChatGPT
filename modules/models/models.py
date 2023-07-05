@@ -21,7 +21,7 @@ from enum import Enum
 import uuid
 
 from ..presets import *
-from ..index_func import *
+#from ..index_func import *
 from ..utils import *
 from .. import shared
 from ..config import retrieve_proxy, usage_limit
@@ -125,7 +125,7 @@ class OpenAIClient(BaseLLMModel):
                       f"{history}" + colorama.Fore.RESET)
         headers = {
             "Content-Type": "application/json",
-            "Authorization": f"Bearer {openai_api_key}",
+            "api-key": f"{openai_api_key}",
         }
 
         if system_prompt is not None:
@@ -176,7 +176,7 @@ class OpenAIClient(BaseLLMModel):
     def _refresh_header(self):
         self.headers = {
             "Content-Type": "application/json",
-            "Authorization": f"Bearer {self.api_key}",
+            "api-key": f"{self.api_key}",
         }
 
     def _get_billing_data(self, billing_url):
